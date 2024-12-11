@@ -1,0 +1,29 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Rejestracja{% endblock %}
+{% block static %} 
+{% endblock %}
+{% block nav %}
+    <li><a href="">Kolegium</a></li>
+    <li><a href="">Dodaj Sędziego</a></li>
+    <li><a href="">Mecze</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    
+{% endblock %}
+
+{% block content %}
+<div id="signup-form">
+    <form method="post">
+        {% csrf_token %}
+        {% if profile.otp_enabled %}
+            <p>OTP jest włączone.</p>
+            <button type="submit" name="disable_otp">Wyłącz OTP</button>
+        {% else %}
+            <p>OTP jest wyłączone.</p>
+            <button type="submit" name="enable_otp">Włącz OTP</button>
+        {% endif %}
+    </form>
+</div>
+    
+{% endblock %}

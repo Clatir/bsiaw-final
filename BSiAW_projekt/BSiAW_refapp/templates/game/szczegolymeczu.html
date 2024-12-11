@@ -1,0 +1,28 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Szczegóły{% endblock %}
+{% block static %} 
+<link rel="stylesheet" href="{% static 'spr.css' %}">
+{% endblock %}
+{% block nav %}
+    <li><a href="{% url 'judge_dashboard' %}">Sędzia</a></li>
+    <li><a href="{% url 'listameczy' %}">Mecze</a></li>
+    <li><a href="/logout">logout</a></li>
+    
+{% endblock %}
+{% block content %}
+<div class="klipy">
+    <h1>Szczegóły Meczu</h1>
+
+        <p>Gospodarz: {{ mecz.Gosp.name }}</p>
+        <p>Gość: {{ mecz.Gosc.name }}</p>
+        <p>Wynik: {{ mecz.wynik }}</p>
+        <p>Status sprawozdania: {{ mecz.status }}</p>
+
+        {% if mecz.status == 'przed' %}
+            <a href="{% url 'sprawozdanie' mecz.id%}"><button>Sprawozdanie</button></a>
+        {% endif %}
+        <a href="{% url 'listameczy' %}"><button>Mecze</button></a>
+</div>
+{% endblock %}

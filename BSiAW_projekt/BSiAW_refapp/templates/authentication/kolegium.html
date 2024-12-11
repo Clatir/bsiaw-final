@@ -1,0 +1,30 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Kolegium{% endblock %}
+{% block static %} 
+<link rel="stylesheet" href="{% static 'spr.css' %}">
+{% endblock %}
+{% block nav %}
+    <li><a href="{% url 'kolmecze' %}">Mecze</a></li>
+    <li><a href="/logout">logout</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="spr-div">
+        <h1>Kolegium</h1>
+        <br>
+        <h2>Nazwa użytkownika: {{ profile.user.username }}</h2>
+        <br>
+        <h2>Adres email: {{ profile.user.email }}</h2>
+        <br>
+        <h2>Imię: {{ profile.user.first_name }}</h2>
+        <br>
+        <h2>Nazwisko: {{ profile.user.last_name }}</h2>
+        <br>
+        <a href="{% url 'editusrk' %}"><button>Edytuj profil</button></a>
+        <br>
+        
+
+    </div>
+{% endblock %}

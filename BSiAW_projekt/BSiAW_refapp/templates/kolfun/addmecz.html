@@ -1,0 +1,24 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Dodaj mecz{% endblock %}
+{% block static %} 
+<link rel="stylesheet" href="{% static 'spr.css' %}">
+{% endblock %}
+{% block nav %}
+    <li><a href="{% url 'committee_dashboard' %}">Kolegium</a></li>
+    <li><a href="/logout">logout</a></li>
+    
+{% endblock %}
+{% block content %}
+<div class="klipy">
+    <h1>Dodaj Mecz</h1>
+    <br>
+    <form method="post" action="{% url 'addmecz' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Dodaj Mecz</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Referee{% endblock %}
+{% block static %} 
+<link rel="stylesheet" href="{% static 'spr.css' %}">
+{% endblock %}
+{% block nav %}
+    <li><a href="{% url 'egzamin' %}">Test</a></li>
+    <li><a href="{% url 'listameczy' %}">Mecze</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="spr-div">
+        <h1>Sędzia</h1>
+        <br>
+        <h2>Nazwa użytkownika: {{ profile.user.username }}</h2>
+        <br>
+        <h2>Adres email: {{ profile.user.email }}</h2>
+        <br>
+        <h2>Imię: {{ profile.user.first_name }}</h2>
+        <br>
+        <h2>Nazwisko: {{ profile.user.last_name }}</h2>
+        <br>
+        <a href="{% url 'editusr' %}"><button>Edytuj profil</button></a>
+        <br>
+        
+
+    </div>
+{% endblock %}

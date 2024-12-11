@@ -1,0 +1,35 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Sprawozdanie{% endblock %}
+{% block static %} 
+<link rel="stylesheet" href="{% static 'spr.css' %}">
+{% endblock %}
+{% block nav %}
+    <li><a href="{% url 'judge_dashboard' %}">Sędzia</a></li>
+    <li><a href="{% url 'listameczy' %}">Mecze</a></li>
+    <li><a href="/logout">logout</a></li>
+    
+{% endblock %}
+{% block content %}
+<div class="klipy">
+     <h1>Sprawozdanie z meczu</h1>
+        <p>Gospodarz: {{ mecz.Gosp.name }}</p>
+        <p>Gość: {{ mecz.Gosc.name }}</p>
+        <p>Wynik: {{ mecz.wynik }}</p>
+        <form method="post" action="{% url 'sprawozdanie' mecz.id %}">
+          {% csrf_token %}
+          {{ form.as_p }}
+
+          <button type="submit">Zapisz zmiany</button>
+        </form>
+        <a href="{% url 'szczegolymeczu' mecz.id %}"><button>Wróć</button></a>
+        <table>
+            <tr>
+                <th><a href="{% url 'sgosp' mecz.id %}">Skład Gospodarzy</a></th>
+                <th><a href="{% url 'sgosc' mecz.id %}">Skład Gości</a></th>
+                <th><a href="{% url 'event' mecz.id %}">Wydarzenia boiskowe</a></th>
+            </tr>
+        </table>
+</div>
+{% endblock %}

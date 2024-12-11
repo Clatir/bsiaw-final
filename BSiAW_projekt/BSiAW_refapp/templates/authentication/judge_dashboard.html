@@ -1,0 +1,22 @@
+
+
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Rejestracja{% endblock %}
+{% block static %} 
+{% endblock %}
+{% block nav %}
+    <li><a href="">Kolegium</a></li>
+    <li><a href="">Dodaj Sędziego</a></li>
+    <li><a href="">Mecze</a></li>
+    <li><a href="{% url 'egzamin' %}">Test</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    
+{% endblock %}
+
+{% block content %}
+<h1>Witaj, {{ profile.user.username }}</h1>
+    <p>Twoja rola: {{ profile.role }}</p>
+    <a href="{% url 'manage_otp' %}">Włącz OTP</a>
+{% endblock %}

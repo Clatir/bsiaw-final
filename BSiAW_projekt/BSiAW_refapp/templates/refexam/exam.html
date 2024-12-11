@@ -1,0 +1,36 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Test{% endblock %}
+{% block static %} 
+<link rel="stylesheet" href="{% static 'spr.css' %}">
+{% endblock %}
+{% block nav %}
+    <li><a href="{% url 'judge_dashboard' %}">Sędzia</a></li>
+    <li><a href="/logout">logout</a></li>
+    
+{% endblock %}
+
+{% block content %}
+<div class="klipy">
+    <h1>Egzamin</h1>
+    <h2>Legenda:</h2>
+    <p>G - grać Dalej | B - Wolny bezpośredni | P - Wolny pośredni</p>
+    <p>K - Karny | J - Jeszcze raz | S - rzut sędziowski</p>
+    <p>Br - Bramka | W - Wrzut | R - rzut rożny</p>
+    <p>Z - zakończenie | Rb - rzut od bramki | + - zółta kartka | ++ - czerwona kartka</p>
+    <p>W odpowiedzi wpisuj tylko skrót, decyzje oddzielaj ","</p>
+    <p>Przykład: jeśli decyzja to: Karny i żółta kartka, należy to zapisac tak: K,+</p>
+        <form method="post" action="{% url 'egzamin' %}">
+        {% csrf_token %}
+
+        {% for pytanie in pytania %}
+            <h2>{{ pytanie }}</h2>
+            <label for="odpowiedz_{{ forloop.counter }}">Odpowiedź:</label>
+            <input type="text" id="odpowiedz_{{ forloop.counter }}" name="odpowiedz" required>
+        {% endfor %}
+
+        <input type="submit" value="Sprawdź odpowiedzi">
+        </form>
+</div>
+{% endblock %}

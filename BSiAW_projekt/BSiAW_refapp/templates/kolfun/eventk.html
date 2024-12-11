@@ -1,0 +1,34 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Wydarzenia{% endblock %}
+{% block static %} 
+<link rel="stylesheet" href="{% static 'spr.css' %}">
+{% endblock %}
+{% block nav %}
+    <li><a href="{% url 'committee_dashboard' %}">Kolegium</a></li>
+    <li><a href="{% url 'kolmecze' %}">Mecze</a></li>
+    <li><a href="/logout">logout</a></li>
+    
+{% endblock %}
+{% block content %}
+<div class="klipy">
+    <h2>Wydarzenie Boiskowe</h2>
+        <table>
+            {% for wydarzenie in wydarzenia %}
+            <tr>
+                <th>Zdarzenie: {{ wydarzenie }}</th>
+                <th>Minuta: {{ wydarzenie.minuta }}</th>
+                {% if wydarzenie.kto == 'gosp' %}
+                <th>{{ mecz.Gosp }}</th>
+                {% endif %}
+                {% if wydarzenie.kto == 'gosc' %}
+                <th>{{ mecz.Gosc }}</th>
+                {% endif %}
+                <th>Zawodnik nr.: {{ wydarzenie.nr_zawodnika }}</th>
+            </tr>
+            {% endfor %}
+    </table>
+    <a href="{% url 'sprawozdaniek' mecz.id%}"><button>Wróć</button></a>
+</div>
+{% endblock %}

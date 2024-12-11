@@ -1,0 +1,28 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Skład{% endblock %}
+{% block static %} 
+<link rel="stylesheet" href="{% static 'spr.css' %}">
+{% endblock %}
+{% block nav %}
+    <li><a href="{% url 'judge_dashboard' %}">Sędzia</a></li>
+    <li><a href="{% url 'listameczy' %}">Mecze</a></li>
+    <li><a href="/logout">logout</a></li>
+    
+{% endblock %}
+{% block content %}
+<div class="klipy">
+    <h2>Skład {{ mecz.Gosp }}</h2>
+        <table>
+            {% for zawodnik in zawodnicy %}
+            <tr>
+                <th>{{ zawodnik }}</th>
+                <th>{{ zawodnik.nr }}</th>
+            </tr>
+            {% endfor %}
+    </table>
+    <a href="{% url 'addzawodnikh' mecz.id %}"><button>Dodaj zawodnika</button></a>
+    <a href="{% url 'sprawozdanie' mecz.id%}"><button>Wróć</button></a>
+</div>
+{% endblock %}

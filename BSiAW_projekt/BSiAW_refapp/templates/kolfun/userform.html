@@ -1,0 +1,24 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Edytuj profil{% endblock %}
+{% block static %} 
+<link rel="stylesheet" href="{% static 'spr.css' %}">
+{% endblock %}
+{% block nav %}
+    <li><a href="{% url 'committee_dashboard' %}">Kolegium</a></li>
+    <li><a href="{% url 'kolmecze' %}">Mecze</a></li>
+    <li><a href="/logout">logout</a></li>
+    
+{% endblock %}
+{% block content %}
+<div class="klipy">
+     <h1>Edytuj dane </h1>
+        <form method="post" action="{% url 'editusrk' %}">
+          {% csrf_token %}
+          {{ form.as_p }}
+
+          <button type="submit">Zapisz zmiany</button>
+        </form>
+</div>
+{% endblock %}

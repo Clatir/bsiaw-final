@@ -1,0 +1,112 @@
+/*############# global #######""*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --global-background-color: #171717;
+    --link-background-collor: #DA0037;
+    --global-text-color: #EDEDED;
+    --text-hover-color: #444444;
+    --gray-color: rgba(255,255,255,0.1);
+}
+
+html{
+    background-color: var(--global-background-color);
+    color: var(--global-text-color);
+}
+
+a{
+    font-size: 130%;
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--global-text-color);
+}
+
+
+
+
+a:hover{
+    color: var(--text-hover-color);
+}
+
+input{
+    width: 70%;
+    margin: 10px auto;
+    padding: 5px;
+    border: none;
+}
+
+input:focus{
+    border: solid 1px var(--link-background-collor);
+}
+
+/*########### header #######"*/
+
+header{
+    background-color: var(--global-background-color);
+    box-shadow: 0 10px 15px -3px var(--gray-color);
+}
+
+header nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 30px;
+}
+
+header nav ul{
+    list-style-type: none;
+    display: inline-flex;
+}
+
+header nav ul li{
+    margin: 5px;
+}
+
+
+@media screen and (max-width: 640px) {
+    header nav{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .brand{
+        font-size: 100px;
+        margin-bottom: 30px;
+    }
+
+}
+/*#########   content #########*/
+
+body{
+    /*background-color: rebeccapurple;*/
+    background-image: url(photos/bg.jpg);
+    background-size: cover; /* Skaluje obraz tak, aby wypełnić całe tło, z zachowaniem proporcji */
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0.7;
+}
+
+#content{
+    padding: 20px; /* Dodaj padding, aby zawartość była odizolowana od krawędzi */
+    box-sizing: border-box; /* Ustaw box-sizing na border-box, aby padding nie wpływał na szerokość/height elementu */
+    min-height: calc(100vh - 2 * 20px); /* Wymusi minimalną wysokość równą wysokości widoku minus padding od góry i dołu */
+}
+
+/*#########   footer #######*/
+
+footer{
+    background-color: var(--global-background-color);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 10px 0 15px var(--gray-color);
+}
+

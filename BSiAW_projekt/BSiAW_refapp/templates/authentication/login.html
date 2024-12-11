@@ -1,0 +1,21 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Logowanie{% endblock %}
+{% block static %} 
+{% endblock %}
+{% block nav %}
+    <li><a href="{% url 'register' %}">Zarejestruj się</a></li>    
+{% endblock %}
+
+{% block content %}
+<h1>Zaloguj się</h1>
+    <div id="signup-form">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Zaloguj</button>
+        </form>
+        <p><a href="{% url 'password_reset' %}">Zapomniałem hasła</a></p>
+    </div>
+{% endblock %}

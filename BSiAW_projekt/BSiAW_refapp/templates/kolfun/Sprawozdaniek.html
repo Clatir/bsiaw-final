@@ -1,0 +1,37 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Sprawozdanie{% endblock %}
+{% block static %} 
+<link rel="stylesheet" href="{% static 'spr.css' %}">
+{% endblock %}
+{% block nav %}
+    <li><a href="{% url 'committee_dashboard' %}">Kolegium</a></li>
+    <li><a href="{% url 'kolmecze' %}">Mecze</a></li>
+    <li><a href="/logout">logout</a></li>
+    
+{% endblock %}
+{% block content %}
+<div class="klipy">
+     <h1>Sprawozdanie z meczu</h1>
+        <p>Gospodarz: {{ mecz.Gosp.name }}</p>
+        <p>Gość: {{ mecz.Gosc.name }}</p>
+        <p>Wynik: {{ mecz.wynik }}</p>
+        {% if mecz.status == 'zlozone' %}
+            <form method="post" action="{% url 'sprawozdaniek' mecz.id %}">
+          {% csrf_token %}
+          <button type="submit">Zatwierdz</button>
+        </form>
+        {% endif %}
+        <a href="{% url 'szczegolymeczuk' mecz.id %}"><button>Wróć</button></a>
+        {% if mecz.status == 'zlozone' or mecz.status == 'zaakceptowane' %}
+        <table>
+            <tr>
+                <th><a href="{% url 'sgospk' mecz.id %}">Skład Gospodarzy</a></th>
+                <th><a href="{% url 'sgosck' mecz.id %}">Skład Gości</a></th>
+                <th><a href="{% url 'eventk' mecz.id %}">Wydarzenia boiskowe</a></th>
+            </tr>
+        </table>
+        {% endif %}
+</div>
+{% endblock %}

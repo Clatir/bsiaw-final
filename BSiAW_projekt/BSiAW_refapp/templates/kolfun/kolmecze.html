@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Lista Meczy{% endblock %}
+{% block static %} 
+<link rel="stylesheet" href="{% static 'spr.css' %}">
+{% endblock %}
+{% block nav %}
+    <li><a href="{% url 'committee_dashboard' %}">Kolegium</a></li>
+    <li><a href="/logout">logout</a></li>
+    
+{% endblock %}
+{% block content %}
+<div class="klipy">
+    <h2>Lista meczy</h2>
+        <table>
+            {% for mecz in mecze %}
+            <tr>
+                <th>{{ mecz }}</th>
+                <th>{{ mecz.wynik }}</th>
+                <th><a href="{% url 'szczegolymeczuk' mecz.id %}"><button>Szczegoly</button></a></th>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'addmecz' %}"><button>Dodaj mecz</button></a>
+</div>
+{% endblock %}

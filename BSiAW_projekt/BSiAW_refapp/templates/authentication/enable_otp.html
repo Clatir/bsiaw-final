@@ -1,0 +1,22 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Rejestracja{% endblock %}
+{% block static %} 
+{% endblock %}
+{% block nav %}
+    <li><a href="">Kolegium</a></li>
+    <li><a href="">Dodaj Sędziego</a></li>
+    <li><a href="">Mecze</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    
+{% endblock %}
+
+{% block content %}
+    <div id="signup-form">
+        <p>Zeskanuj poniższy kod QR w aplikacji uwierzytelniającej (np. Google Authenticator):</p>
+        <img src="data:image/png;base64,{{ qr_code_base64 }}" alt="Kod QR">
+        <p>Lub użyj tego linku: <a href="{{ qr_code_url }}">{{ qr_code_url }}</a></p>
+        <a href="{% url 'role_redirect' %}">Powrót do panelu użytkownika</a>
+    </div>
+{% endblock %}

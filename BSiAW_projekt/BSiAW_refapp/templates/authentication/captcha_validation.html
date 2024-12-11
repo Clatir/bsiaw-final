@@ -1,0 +1,22 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Potwierdź reset hasła{% endblock %}
+{% block static %} 
+{% endblock %}
+{% block nav %}
+    
+{% endblock %}
+
+{% block content %}
+<h2>Potwierdzenie resetu hasła</h2>
+<p>Wypełnij poniższą CAPTCHA, aby przejść do resetu hasła.</p>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Przejdź dalej</button>
+</form>
+{% if error %}
+<p style="color: red;">{{ error }}</p>
+{% endif %}
+{% endblock %}

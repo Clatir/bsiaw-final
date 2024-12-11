@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style_singup.css' %}">
+    {% block static %}
+    {% endblock %}
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="brand"><a> RefApp </a></div>
+            <ul>
+                {% block nav %}
+                <li><a href="{% url 'register' %}">Zarejestruj się</a></li>
+                <li><a href="{% url 'login' %}">Logowanie</a></li>
+                {% endblock %} 
+            </ul>
+        </nav>
+    </header>
+    {% if messages %}
+      <div class="messages" style="text-align: center;">
+          {% for message in messages %}
+            <p>
+                {% if message.tags == "error" %}
+                  <i class="fa fa-exclamation" aria-hidden="true"></i>
+                  {% else %}
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                {% endif %}
+                &nbsp;{{message}}
+            </p>
+          {% endfor %}
+      </div>
+    {% endif %}
+    <div id="content", name="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <h3>Bezpieczeństwo Serwerów i Aplikacji Web Projekt</h>
+    </footer>
+    
+</body>
+</html>

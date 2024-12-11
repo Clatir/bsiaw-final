@@ -1,0 +1,25 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}Dodaj zawodnika{% endblock %}
+{% block static %} 
+<link rel="stylesheet" href="{% static 'spr.css' %}">
+{% endblock %}
+{% block nav %}
+    <li><a href="{% url 'judge_dashboard' %}">Sędzia</a></li>
+    <li><a href="{% url 'listameczy' %}">Mecze</a></li>
+    <li><a href="/logout">logout</a></li>
+    
+{% endblock %}
+{% block content %}
+<div class="klipy">
+    <h1>Dodaj Zawodnika</h1>
+
+        <form method="post" action="{% url 'addzawodnikh' mecz.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit">Dodaj Zawodnika</button>
+        </form>
+</div>
+{% endblock %}
